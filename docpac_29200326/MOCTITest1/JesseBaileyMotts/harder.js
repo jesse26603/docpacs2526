@@ -8,8 +8,7 @@ const data = fs.readFileSync("data.csv")
 
 // Start at 1 to skip header
 for (let i = 1; i < data.length; i++) {
-    if (!data[i].trim()) continue; // Skip empty lines
-    const line = data[i].split(","); // Split line of data
+    const line = data[i].replace("\r", "").split(","); // Remove \r from string and split line of data
     // If orders is empty or the order names are different, make a new order
     if (orders.length == 0 || orders[orders.length - 1].name != line[0]) {
         orders.push({
